@@ -6,13 +6,19 @@ using Unity.Transforms;
 public class ECSManager : MonoBehaviour
 {
     public static EntityManager manager;
-    public GameObject virusPrefab;
-    public GameObject redBloodPrefab;
+
+    [SerializeField] private GameObject virusPrefab;
+    [SerializeField] private GameObject redBloodPrefab;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject player;
 
     int numVirus = 500;
     int numRedBlood = 500;
+    int numBullets = 10;
 
     BlobAssetStore store;
+
+    Entity bullet;
 
     void Start()
     {
@@ -21,6 +27,7 @@ public class ECSManager : MonoBehaviour
         var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, store);
         Entity virus = GameObjectConversionUtility.ConvertGameObjectHierarchy(virusPrefab, settings);
         Entity redBlood = GameObjectConversionUtility.ConvertGameObjectHierarchy(redBloodPrefab, settings);
+        bullet = GameObjectConversionUtility.ConvertGameObjectHierarchy(bulletPrefab, settings);
 
         for (int i = 0; i < numVirus; i++)
         {
@@ -48,6 +55,20 @@ public class ECSManager : MonoBehaviour
 
             float rSpeed = UnityEngine.Random.Range(1, 10) / 10.0f;
             manager.SetComponentData(instance, new FloatData { Speed = rSpeed });
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            for (int i = 0; i < numBullets; i++)
+            {
+                var instance = manager.Instantiate(bullet);
+                var startPosition = player.transform.position + UnityEngine.Random.insideUnitSphere * 2;
+                manager.SetComponentData(instance, new Translation { Value = startPosition });
+                manager.SetComponentData(instance, new Rotation { Value = player.transform.rotation });
+            }
         }
     }
 
