@@ -65,6 +65,8 @@ public class ECSManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            SoundManager.Instance.PlaySquirtSound();
+
             for (int i = 0; i < numBullets; i++)
             {
                 var instance = manager.Instantiate(bullet);

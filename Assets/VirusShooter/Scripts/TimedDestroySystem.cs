@@ -36,6 +36,8 @@ public class TimedDestroySystem : JobComponentSystem
             {
                 if (!virusData.Alive)
                 {
+                    SoundManager.Instance.PlaySplatSound();
+
                     for (int i = 0; i < 100; i++)
                     {
                         float3 offset = (float3)UnityEngine.Random.insideUnitSphere * 2.0f;
