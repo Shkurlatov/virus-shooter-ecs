@@ -6,9 +6,11 @@ using Unity.Transforms;
 public class ECSManager : MonoBehaviour
 {
     public static EntityManager manager;
+    public static Entity whiteBlood;
 
     [SerializeField] private GameObject virusPrefab;
     [SerializeField] private GameObject redBloodPrefab;
+    [SerializeField] private GameObject whiteBloodPrefab;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject player;
 
@@ -27,6 +29,7 @@ public class ECSManager : MonoBehaviour
         var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, store);
         Entity virus = GameObjectConversionUtility.ConvertGameObjectHierarchy(virusPrefab, settings);
         Entity redBlood = GameObjectConversionUtility.ConvertGameObjectHierarchy(redBloodPrefab, settings);
+        whiteBlood = GameObjectConversionUtility.ConvertGameObjectHierarchy(whiteBloodPrefab, settings);
         bullet = GameObjectConversionUtility.ConvertGameObjectHierarchy(bulletPrefab, settings);
 
         for (int i = 0; i < numVirus; i++)

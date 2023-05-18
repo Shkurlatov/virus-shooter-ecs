@@ -442,6 +442,8 @@ MonoBehaviour:
     type: 3}
   redBloodPrefab: {fileID: 1329208593750425295, guid: 181de8b1002d6ce4e8c97bb1367d5109,
     type: 3}
+  whiteBloodPrefab: {fileID: 1552076597365624259, guid: d85aa5ee707be6444bf7e5efc37a1386,
+    type: 3}
   bulletPrefab: {fileID: 4783639045835123737, guid: 7ebfb6ad8d05a7a4292313ec3c1e2a6d,
     type: 3}
   player: {fileID: 963194225}

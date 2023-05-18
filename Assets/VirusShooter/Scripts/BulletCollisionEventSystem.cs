@@ -23,6 +23,7 @@ public class BulletCollisionEventSystem : JobComponentSystem
         [ReadOnly] public ComponentDataFromEntity<BulletData> BulletGroup;
         public ComponentDataFromEntity<VirusData> VirusGroup;
 
+        [System.Obsolete]
         public void Execute(CollisionEvent collisionEvent)
         {
             Entity entityA = collisionEvent.Entities.EntityA;
